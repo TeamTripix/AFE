@@ -8,6 +8,7 @@ import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import TodayIcon from "@material-ui/icons/Today";
 import FullScreenDialog from './attendanceDetails'
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles({
   avatar: {
@@ -59,6 +60,7 @@ SimpleDialog.propTypes = {
 
 export default function CustomCalendar(props) {
   const [open, setOpen] = React.useState(false);
+
 
   const handleClickOpen = () => {
     setOpen(true);

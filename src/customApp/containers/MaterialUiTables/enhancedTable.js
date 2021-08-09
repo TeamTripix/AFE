@@ -297,15 +297,6 @@ export default class EnhancedTable extends Component {
                           <p style={{ margin: "0px" }}>
                             {val.user_first_name} {val.user_last_name}
                           </p>
-                          <p
-                            style={{
-                              margin: "0px",
-                              fontSize: "0.8rem",
-                              color: "grey",
-                            }}
-                          >
-                            {val.user_id}
-                          </p>
                         </TableCell>
 
                         <TableCell style={{ textAlignLast: "end" }}>

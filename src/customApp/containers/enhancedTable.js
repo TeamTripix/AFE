@@ -27,7 +27,6 @@ import FormDialog from "./feeCreation";
 import FormDialogs from "./feeUpdation";
 
 const columnData = [
-  { id: "name", numeric: false, disablePadding: true, label: "Student Id" },
   { id: "calories", numeric: true, disablePadding: false, label: "Fees Type" },
   { id: "fat", numeric: false, disablePadding: false, label: "Paid Fees" },
   { id: "carbs", numeric: false, disablePadding: false, label: "Fees Status" },
@@ -313,7 +312,6 @@ export default class EnhancedTable extends Component {
                         <TableCell padding="checkbox">
                           <FormDialogs data={val} />
                         </TableCell>
-                        <TableCell>{val.student_id}</TableCell>
                         <TableCell>{val.fees_type}</TableCell>
                         <TableCell>{val.paid_fees}</TableCell>
                         <TableCell>{val.fees_status}</TableCell>

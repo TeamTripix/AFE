@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, IconButton, makeStyles, DialogTitle, DialogContent, DialogActions, Dialog, TextField, } from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
 import EditIcon from '@material-ui/icons/Edit';
+import axios from 'axios';
 
 
 // ****************form component start****************
@@ -28,7 +29,6 @@ export function LayoutTextFields(props) {
   const classes = useStyles();
 
   const {
-    student_id,
     fees_type,
     paid_fees,
     fees_status,
@@ -40,7 +40,6 @@ export function LayoutTextFields(props) {
 
   const formUpdate = (e) => {
     if (
-      student_id === e.target.value ||
       fees_type === e.target.value ||
       paid_fees === e.target.value ||
       fees_status === e.target.value ||
@@ -60,7 +59,7 @@ export function LayoutTextFields(props) {
     const formData = document.querySelectorAll('#updateData')
     const data = new FormData(formData[0])
     var fieldName = []
-    for (var i = 0; 8 > i; i++) {
+    for (var i = 0; 7 > i; i++) {
       fieldName.push(e.target[i].name)
     }
     const fieldData = []
@@ -68,12 +67,33 @@ export function LayoutTextFields(props) {
       var a = data.get(fieldName[i])
       fieldData.push(a)
     }
+    console.log(fieldData)
+    axios.post('/login',
+            {
+                value: fieldData
+            })
+            .then((response) => {
+                if (response.data === "userLogin") {
+                    // clearEmail('')
+                    // clearPassword('')
+
+                    // history.push("/welcome")
+
+                } else {
+                    // setError(true)
+                    // setLabel("Incorrect email or password")
+                }
+            })
+            .catch((error) => {
+                // setError(true)
+                // setLabel("please connect to the server first")
+            });
   };
   return (
     <>
       <form onChange={formUpdate} onSubmit={updateFormSubmit} id="updateData">
         <div className={classes.root}>
-          <TextField
+          {/* <TextField
             // id="standard-full-width"
             label="Student ID"
             style={{ margin: 5, width: "98%" }}
@@ -83,7 +103,7 @@ export function LayoutTextFields(props) {
             type="number"
             required={true}
             name='studentID'
-          />
+          /> */}
           <div style={gap}>
             <TextField
               label="Fees Type"

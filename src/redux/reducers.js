@@ -23,6 +23,8 @@ import CustomAppReducers from '../customApp/redux/reducers';
 import scrumBoard from './scrumBoard/reducer';
 import drawer from './drawer/reducer';
 import modal from './modal/reducer';
+import noticationReducer from './notification/reducer'
+import searchValue from './search/reducer';
 
 export default {
   Auth,
@@ -48,5 +50,7 @@ export default {
   scrumBoard,
   drawer,
   modal,
+  noticationReducer,
+  searchValue,
   ...CustomAppReducers,
 };

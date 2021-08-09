@@ -1,7 +1,7 @@
 const initialState = ""
-const searchValue = (state = initialState, action)=>{
+const noticationReducer = (state = initialState, action)=>{
     switch(action.type){
-        case "SEARCH" :
+        case "NOTIFICATION" :
             const {data} = action.payload
             return{
                 data : data
@@ -13,4 +13,4 @@ const searchValue = (state = initialState, action)=>{
     }
 }
 
-export default searchValue
+export default noticationReducer

@@ -170,9 +170,8 @@ EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
 // ------------------------------mapStateToProps---------------------------
 
 const mapStateToProps = (props) => {
-  // var value = props.searchValue.data
-  console.log(props)
-  // return value 
+  var value = props.searchValue.data
+  return value 
 }
 
 // ------------------------------mapStateToProps---------------------------
@@ -317,7 +316,7 @@ class EnhancedTable extends Component {
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
-    const searchValue = this.props.value
+    const searchValue = this.props
     console.log(searchValue)
     return (
       <>

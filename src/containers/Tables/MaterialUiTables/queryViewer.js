@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import IntegrationNotistack from '../../notification'
 // import axios from 'axios';
 
 
@@ -54,6 +55,8 @@ const DialogActions = withStyles((theme) => ({
 
 export default function CustomizedDialogs(props) {
     const [open, setOpen] = React.useState(false);
+    const [enable, setEnable] = React.useState(true);
+    const [notification, setNotification] = React.useState(false)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -61,9 +64,18 @@ export default function CustomizedDialogs(props) {
     const handleClose = () => {
         setOpen(false);
     };
+
+    const formHandleChange = (e) => {
+        if(e.target.value){
+            setEnable(false)
+        }else{
+            setEnable(true)
+        }
+    }
     
     const enquiryResponse = (e)=>{
         e.preventDefault()
+        setNotification(true)
         // const enquiryResponseValue = e.target[0].value
         // axios.post('/login',
         //     {
@@ -107,16 +119,12 @@ export default function CustomizedDialogs(props) {
                         scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
                         auctor fringilla.
                     </Typography>
-                    <form noValidate autoComplete="off" onSubmit={enquiryResponse}>
-                    <TextareaAutosize aria-label="minimum height" minRows={5} style={{width:'100%'}} placeholder="Minimum 3 rows" />
-                    <Button variant="contained" color="primary" type="submit">Send</Button>
+                    <form noValidate autoComplete="off" onSubmit={enquiryResponse} onChange={formHandleChange}>
+                    <TextareaAutosize aria-label="minimum height" minRows={5} style={{width:'100%'}} placeholder="Query response..." />
+                    <Button disabled={enable} style={{marginTop: '0.5rem'}} variant="contained" color="primary" type="submit">Send</Button>
                     </form>
+                    {notification === true ? <IntegrationNotistack/> : "" }
                 </DialogContent>
-                <DialogActions>
-                    <Button autoFocus onClick={handleClose} color="primary">
-                        Save changes
-                    </Button>
-                </DialogActions>
             </Dialog>
         </div>
     );
