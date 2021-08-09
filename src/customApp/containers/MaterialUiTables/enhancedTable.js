@@ -5,10 +5,10 @@ import Scrollbars from "../../../components/utility/customScrollBar";
 import { withStyles } from "@material-ui/core/styles";
 import keycode from "keycode";
 import TopbarSearch from "../../../containers/Topbar/topbarSearch";
-import Fab from '@material-ui/core/Fab';
-import TodayIcon from '@material-ui/icons/Today';
+import Fab from "@material-ui/core/Fab";
+import TodayIcon from "@material-ui/icons/Today";
 // import BasicDatePicker from './calendar'
-import CustomCalendar from './calenderDialog'
+import CustomCalendar from "./calenderDialog";
 
 import {
   TableBody,
@@ -32,12 +32,17 @@ import { validate } from "uuid";
 
 const columnData = [
   {
-    id: 'studentName',
+    id: "studentName",
     numeric: false,
     disablePadding: true,
-    label: 'Student',
+    label: "Student",
   },
-  { id: 'studentAttendance', numeric: true, disablePadding: false, label: 'Attendance' },
+  {
+    id: "studentAttendance",
+    numeric: true,
+    disablePadding: false,
+    label: "Attendance",
+  },
   // { id: 'fat', numeric: false, disablePadding: false, label: 'Email' },
   // { id: 'carbs', numeric: false, disablePadding: false, label: 'Query' },
   // { id: 'protein', numeric: true, disablePadding: false, label: 'Reply' },
@@ -60,7 +65,7 @@ class EnhancedTableHead extends Component {
     return (
       <TableHead>
         <TableRow>
-        <TableCell padding="checkbox">
+          <TableCell padding="checkbox">
             {/* <Checkbox
               indeterminate={numSelected > 0 && numSelected < rowCount}
               checked={numSelected === rowCount}
@@ -70,10 +75,14 @@ class EnhancedTableHead extends Component {
           {columnData.map((column) => {
             return (
               <TableCell
-                style={column.id === 'studentName' ? { textAlignLast: 'start' } : { textAlignLast: 'end' }}
+                style={
+                  column.id === "studentName"
+                    ? { textAlignLast: "start" }
+                    : { textAlignLast: "end" }
+                }
                 key={column.id}
                 numeric={column.numeric}
-              // padding={column.disablePadding ? 'none' : 'default'}
+                // padding={column.disablePadding ? 'none' : 'default'}
               >
                 {/* <Tooltip
                   title="Sort"
@@ -243,11 +252,10 @@ export default class EnhancedTable extends Component {
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
-    const searchValue = "r"
-    console.log(data)
+    const searchValue = "r";
     return (
       <>
-        <Paper style={{ padding: 'inherit' }}>
+        <Paper style={{ padding: "inherit" }}>
           <EnhancedTableToolbar numSelected={selected.length} />
           <Scrollbars style={{ width: "100%" }}>
             <Table className={classes.table}>
@@ -283,14 +291,37 @@ export default class EnhancedTable extends Component {
                         aria-checked={""}
                       >
                         <TableCell padding="checkbox">
-
-                        <CustomCalendar />
+                          <CustomCalendar Data={val} />
                         </TableCell>
-                        <TableCell style={{fontSize:'1rem'}}>{val.user_first_name} {val.user_last_name}</TableCell>
-                        {/* </div>
-                        <div> */}
-                        <TableCell style={{ textAlignLast: 'end' }}><b>{val.attendance_percentage}%</b></TableCell>
-                        {/* </div> */}
+                        <TableCell style={{ fontSize: "1rem", color: "black" }}>
+                          <p style={{ margin: "0px" }}>
+                            {val.user_first_name} {val.user_last_name}
+                          </p>
+                          <p
+                            style={{
+                              margin: "0px",
+                              fontSize: "0.8rem",
+                              color: "grey",
+                            }}
+                          >
+                            {val.user_id}
+                          </p>
+                        </TableCell>
+
+                        <TableCell style={{ textAlignLast: "end" }}>
+                          <p style={{ margin: "0px" }}>
+                            <b>{val.attendance_percentage}%</b>
+                          </p>
+                          <p
+                            style={{
+                              margin: "0px",
+                              fontSize: "0.5rem",
+                              color: "grey",
+                            }}
+                          >
+                            Out of 0 lecture
+                          </p>
+                        </TableCell>
                       </TableRow>
                     );
                   })}
