@@ -1,35 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import { SnackbarProvider, useSnackbar } from 'notistack';
 import { useDispatch } from 'react-redux';
 
-function MyApp() {
+function MyApp(props) {
   const { enqueueSnackbar } = useSnackbar();
-  const dispatch = useDispatch()
-  const handleClick = () => {
-    enqueueSnackbar('I love snacks.');
-  };
+  useEffect(() => {
+    handleClickVariant(message)
+  },[message])
+  const message = props.message
 
-  const handleClickVariant = (variant) => () => {
-    // variant could be success, error, warning, info, or default
+
+  const handleClickVariant = (variant) => {
     enqueueSnackbar('This is a success message!', { variant });
   };
 
-  dispatch(handleClickVariant)
   
 
   return (
     <React.Fragment>
-      <Button onClick={handleClick}>Show snackbar</Button>
-      <Button onClick={handleClickVariant('success')}>Show success snackbar</Button>
     </React.Fragment>
   );
 }
 
-export default function IntegrationNotistack() {
+export default function IntegrationNotistack(props) {
   return (
     <SnackbarProvider maxSnack={3}>
-      <MyApp />
+      <MyApp message={props.message}/>
     </SnackbarProvider>
   );
 }

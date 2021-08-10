@@ -18,6 +18,11 @@ const useStyles = makeStyles({
 });
 
 function SimpleDialog(props) {
+  const toggleAttDetails = useSelector((state)=>{
+    return state.noticationReducer.data
+
+  })
+  // console.log(data)
   const classes = useStyles();
   const { onClose, selectedValue, open, Data } = props;
 
@@ -25,12 +30,15 @@ function SimpleDialog(props) {
     onClose(selectedValue);
   };
 
-  const [selectedDate, handleDateChange] = useState(new Date());
+  const [selectedDate, handleDateChange] = useState("");
   const [attOpen, setAttOpen] = useState(false)
   const handleCalendarClick = (e) => {
     handleDateChange(e);
+    console.log("e",e)
+    
     setAttOpen(true)
   };
+  console.log("selected",selectedDate)
 
   return (
     <Dialog
@@ -46,7 +54,10 @@ function SimpleDialog(props) {
           variant="static"
         />
       </MuiPickersUtilsProvider>
-      {attOpen === true ?  <FullScreenDialog date={selectedDate} open={true} stData={Data}/> : ""}
+      { attOpen === toggleAttDetails ? <FullScreenDialog date={selectedDate} stData={Data}/> : ""}
+      {/* {setTimeout(()=>{
+        setAttOpen(false)
+      },1000)} */}
 
     </Dialog>
   );

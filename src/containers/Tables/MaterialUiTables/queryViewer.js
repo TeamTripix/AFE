@@ -70,12 +70,16 @@ export default function CustomizedDialogs(props) {
             setEnable(false)
         }else{
             setEnable(true)
+            // setNotification(false)
         }
     }
     
     const enquiryResponse = (e)=>{
         e.preventDefault()
-        setNotification(true)
+        setNotification({on:true, Msg: "success"})
+        setTimeout(() => {
+            setNotification({on:false, Msg: ""})  
+        }, 2000);
         // const enquiryResponseValue = e.target[0].value
         // axios.post('/login',
         //     {
@@ -123,7 +127,7 @@ export default function CustomizedDialogs(props) {
                     <TextareaAutosize aria-label="minimum height" minRows={5} style={{width:'100%'}} placeholder="Query response..." />
                     <Button disabled={enable} style={{marginTop: '0.5rem'}} variant="contained" color="primary" type="submit">Send</Button>
                     </form>
-                    {notification === true ? <IntegrationNotistack/> : "" }
+                    {notification.on === true ? <IntegrationNotistack message={notification.Msg}/> : "" }
                 </DialogContent>
             </Dialog>
         </div>

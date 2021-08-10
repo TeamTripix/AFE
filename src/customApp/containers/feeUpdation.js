@@ -1,9 +1,18 @@
 import React, { useState } from "react";
-import { Button, IconButton, makeStyles, DialogTitle, DialogContent, DialogActions, Dialog, TextField, } from "@material-ui/core";
-import CloseIcon from '@material-ui/icons/Close';
-import EditIcon from '@material-ui/icons/Edit';
-import axios from 'axios';
-
+import {
+  Button,
+  IconButton,
+  makeStyles,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Dialog,
+  TextField,
+} from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+import EditIcon from "@material-ui/icons/Edit";
+import axios from "axios";
+import IntegrationNotistack from '../../containers/notification'
 
 // ****************form component start****************
 
@@ -26,6 +35,8 @@ const gap = {
 
 export function LayoutTextFields(props) {
   const [disable, setDisable] = useState(true);
+  const [notification, setNotification] = React.useState(false)
+
   const classes = useStyles();
 
   const {
@@ -56,38 +67,48 @@ export function LayoutTextFields(props) {
 
   const updateFormSubmit = (e) => {
     e.preventDefault();
-    const formData = document.querySelectorAll('#updateData')
-    const data = new FormData(formData[0])
-    var fieldName = []
+    const formData = document.querySelectorAll("#updateData");
+    const data = new FormData(formData[0]);
+    var fieldName = [];
     for (var i = 0; 7 > i; i++) {
-      fieldName.push(e.target[i].name)
+      fieldName.push(e.target[i].name);
     }
-    const fieldData = []
+    const fieldData = [];
     for (let i = 0; fieldName.length > i; i++) {
-      var a = data.get(fieldName[i])
-      fieldData.push(a)
+      var a = data.get(fieldName[i]);
+      fieldData.push(a);
     }
-    console.log(fieldData)
-    axios.post('/login',
-            {
-                value: fieldData
-            })
-            .then((response) => {
-                if (response.data === "userLogin") {
-                    // clearEmail('')
-                    // clearPassword('')
 
-                    // history.push("/welcome")
+    setNotification({on:true, Msg: "success"})
+        setTimeout(() => {
+            setNotification({on:false, Msg: ""})  
+        }, 3000);
 
-                } else {
-                    // setError(true)
-                    // setLabel("Incorrect email or password")
-                }
-            })
-            .catch((error) => {
-                // setError(true)
-                // setLabel("please connect to the server first")
-            });
+    
+
+// ********************axios*****************
+    
+    // axios
+    //   .post("/login", {
+    //     value: fieldData,
+    //   })
+    //   .then((response) => {
+    //     if (response.data === "userLogin") {
+    //       // clearEmail('')
+    //       // clearPassword('')
+    //       // history.push("/welcome")
+    //     } else {
+    //       // setError(true)
+    //       // setLabel("Incorrect email or password")
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     // setError(true)
+    //     // setLabel("please connect to the server first")
+    //   });
+
+// **************************axios*********************
+
   };
   return (
     <>
@@ -111,8 +132,7 @@ export function LayoutTextFields(props) {
               defaultValue={fees_type}
               className={classes.textField}
               required={true}
-              name='feesType'
-
+              name="feesType"
             />
             {/* <Select
               label="Fees Type"
@@ -134,8 +154,7 @@ export function LayoutTextFields(props) {
               className={classes.textField}
               type="number"
               required={true}
-              name='paidFees'
-
+              name="paidFees"
             />
           </div>
           <div style={gap}>
@@ -145,8 +164,7 @@ export function LayoutTextFields(props) {
               defaultValue={fees_status}
               className={classes.textField}
               required={true}
-              name='feesStatus'
-
+              name="feesStatus"
             />
             <TextField
               label="Comment"
@@ -155,8 +173,7 @@ export function LayoutTextFields(props) {
               className={classes.textField}
               type="string"
               required={true}
-              name='comment'
-
+              name="comment"
             />
           </div>
           <div style={gap}>
@@ -167,8 +184,7 @@ export function LayoutTextFields(props) {
               className={classes.textField}
               type="number"
               required={true}
-              name='totalFees'
-
+              name="totalFees"
             />
             <TextField
               label="Installment Type"
@@ -176,8 +192,7 @@ export function LayoutTextFields(props) {
               defaultValue={installment_type}
               className={classes.textField}
               required={true}
-              name='installmentType'
-
+              name="installmentType"
             />
           </div>
 
@@ -189,16 +204,21 @@ export function LayoutTextFields(props) {
             margin="normal"
             defaultValue={next_schedule_date}
             required={true}
-            name='nextScheduleDate'
-
+            name="nextScheduleDate"
           />
         </div>
         <DialogActions>
-          <Button color="primary" type="submit" variant='contained' disabled={disable}>
+          <Button
+            color="primary"
+            type="submit"
+            variant="contained"
+            disabled={disable}
+          >
             Update
           </Button>
         </DialogActions>
       </form>
+      {notification.on === true ? <IntegrationNotistack message={notification.Msg}/> : "" }
     </>
   );
 }
@@ -209,7 +229,6 @@ export default function FormDialogs(props) {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
 
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -219,14 +238,28 @@ export default function FormDialogs(props) {
   };
   return (
     <div>
-      <IconButton aria-label="delete" onClick={handleClickOpen} className={classes.margin} size="large">
+      <IconButton
+        aria-label="delete"
+        onClick={handleClickOpen}
+        className={classes.margin}
+        size="large"
+      >
         <EditIcon />
       </IconButton>
-      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-        <DialogTitle id="customized-dialog-title" >
-          <section style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <Dialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={open}
+      >
+        <DialogTitle id="customized-dialog-title">
+          <section style={{ display: "flex", justifyContent: "space-between" }}>
             Update
-            <IconButton aria-label="delete" onClick={handleClose} className={classes.margin} size="large">
+            <IconButton
+              aria-label="delete"
+              onClick={handleClose}
+              className={classes.margin}
+              size="large"
+            >
               <CloseIcon fontSize="inherit" />
             </IconButton>
           </section>

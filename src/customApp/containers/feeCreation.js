@@ -4,6 +4,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import axios from "axios";
+import IntegrationNotistack from '../../containers/notification'
+
 
 
 // ****************form component start****************
@@ -27,6 +29,8 @@ const gap = {
 
 export function LayoutTextFields() {
   // const [disable, setDisable] = useState(true);
+  const [notification, setNotification] = React.useState(false)
+
   const classes = useStyles();
 
   const updateFormSubmit = (e) => {
@@ -58,10 +62,16 @@ export function LayoutTextFields() {
       data: updateSendData
   })
   .then(function (response) {
-      console.log(response);
+      setNotification({on:true, Msg: "success"})
+      setTimeout(() => {
+          setNotification({on:false, Msg: ""})  
+      }, 3000);
   })
   .catch(function (error) {
-      console.log(error);
+    setNotification({on:true, Msg: "fail"})
+    setTimeout(() => {
+        setNotification({on:false, Msg: ""})  
+    }, 3000);
   });
   };
   return (
@@ -158,6 +168,8 @@ export function LayoutTextFields() {
           </Button>
         </DialogActions>
       </form>
+      {notification.on === true ? <IntegrationNotistack message={notification.Msg}/> : "" }
+
     </>
   );
 }

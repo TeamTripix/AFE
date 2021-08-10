@@ -1,4 +1,4 @@
-const initialState = ""
+const initialState = true
 const noticationReducer = (state = initialState, action)=>{
     switch(action.type){
         case "NOTIFICATION" :
