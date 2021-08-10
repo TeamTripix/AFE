@@ -8,21 +8,24 @@ import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import TodayIcon from "@material-ui/icons/Today";
 import FullScreenDialog from './attendanceDetails'
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import notificationAction from '../../../redux/notification/action'
+
 
 const useStyles = makeStyles({
   avatar: {
+
     backgroundColor: blue[100],
     color: blue[600],
   },
 });
 
 function SimpleDialog(props) {
+  const dispatch = useDispatch()
   const toggleAttDetails = useSelector((state)=>{
     return state.noticationReducer.data
 
   })
-  // console.log(data)
   const classes = useStyles();
   const { onClose, selectedValue, open, Data } = props;
 
@@ -31,14 +34,12 @@ function SimpleDialog(props) {
   };
 
   const [selectedDate, handleDateChange] = useState("");
-  const [attOpen, setAttOpen] = useState(false)
+  // const [attOpen, setAttOpen] = useState(false)
+  const attOpen = true
   const handleCalendarClick = (e) => {
     handleDateChange(e);
-    console.log("e",e)
-    
-    setAttOpen(true)
+    dispatch(notificationAction(true))
   };
-  console.log("selected",selectedDate)
 
   return (
     <Dialog
