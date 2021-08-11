@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import { SnackbarProvider, useSnackbar } from 'notistack';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 function MyApp(props) {
   const { enqueueSnackbar } = useSnackbar();
+  const message = props.message
   useEffect(() => {
     handleClickVariant(message)
   },[message])
-  const message = props.message
 
 
   const handleClickVariant = (variant) => {

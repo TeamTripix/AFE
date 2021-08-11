@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import EditIcon from "@material-ui/icons/Edit";
-import axios from "axios";
+// import axios from "axios";
 import IntegrationNotistack from '../../containers/notification'
 
 // ****************form component start****************
@@ -204,6 +204,7 @@ export function LayoutTextFields(props) {
             margin="normal"
             defaultValue={next_schedule_date}
             required={true}
+            // type="date"
             name="nextScheduleDate"
           />
         </div>

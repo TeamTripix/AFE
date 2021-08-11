@@ -5,10 +5,8 @@ import Scrollbars from "../../../components/utility/customScrollBar";
 import { withStyles } from "@material-ui/core/styles";
 import keycode from "keycode";
 import TopbarSearch from "../../../containers/Topbar/topbarSearch";
-import Fab from "@material-ui/core/Fab";
-import TodayIcon from "@material-ui/icons/Today";
-// import BasicDatePicker from './calendar'
 import CustomCalendar from "./calenderDialog";
+import CircularIndeterminate from '../../../containers/snipper'
 
 import {
   TableBody,
@@ -17,7 +15,7 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  TableSortLabel,
+  // TableSortLabel,
 } from "../../../components/uielements/table";
 import { Table } from "./materialUiTables.style";
 import Toolbar from "../../../components/uielements/toolbar";
@@ -26,9 +24,9 @@ import Paper from "../../../components/uielements/paper";
 // import Checkbox from '../../../components/uielements/checkbox';
 // import IconButton from '../../../components/uielements/iconbutton';
 // import Icon from '../../../components/uielements/icon/index.js';
-import Tooltip from "../../../components/uielements/tooltip";
-import CustomizedDialogs from "./queryViewer";
-import { validate } from "uuid";
+// import Tooltip from "../../../components/uielements/tooltip";
+// import CustomizedDialogs from "./queryViewer";
+// import { validate } from "uuid";
 
 const columnData = [
   {
@@ -54,13 +52,13 @@ class EnhancedTableHead extends Component {
     this.props.onRequestSort(event, property);
   };
   render() {
-    const {
+    // const {
       // onSelectAllClick,
-      order,
-      orderBy,
+      // order,
+      // orderBy,
       // numSelected,
       // rowCount,
-    } = this.props;
+    // } = this.props;
 
     return (
       <TableHead>
@@ -252,10 +250,11 @@ export default class EnhancedTable extends Component {
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
-    const searchValue = "r";
+    // const searchValue = "r";
+    console.log(data)
     return (
       <>
-        <Paper style={{ padding: "inherit" }}>
+        {data.length === 0 ? <CircularIndeterminate/> : <Paper style={{ padding: "inherit" }}>
           <EnhancedTableToolbar numSelected={selected.length} />
           <Scrollbars style={{ width: "100%" }}>
             <Table className={classes.table}>
@@ -286,7 +285,7 @@ export default class EnhancedTable extends Component {
                         tabIndex={-1}
                         key={val.id}
                         role="checkbox"
-                        aria-checked={""}
+                        // aria-checked={""}
                       >
                         <TableCell padding="checkbox">
                           <CustomCalendar Data={val} />
@@ -328,7 +327,7 @@ export default class EnhancedTable extends Component {
               </TableFooter>
             </Table>
           </Scrollbars>
-        </Paper>
+        </Paper>}
       </>
     );
   }

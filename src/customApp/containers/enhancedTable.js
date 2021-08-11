@@ -7,6 +7,7 @@ import keycode from "keycode";
 import TopbarSearch from "../../containers/Topbar/topbarSearch";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import CircularIndeterminate from '../../containers/snipper'
 
 import {
   TableBody,
@@ -130,7 +131,7 @@ let EnhancedTableToolbar = (props) => {
         })}
       >
         <div className={classes.title}>
-          <TopbarSearch value={'hello'}/>
+          <TopbarSearch value={"hello"} />
         </div>
         <div className={classes.spacer} />
         <div className={classes.actions}>
@@ -268,10 +269,10 @@ export default class EnhancedTable extends Component {
   render() {
     // const { classes } = this.props;
     const { data, order, orderBy, rowsPerPage, page } = this.state;
-    const searchValue = 28
+    const searchValue = 28;
     return (
       <>
-        <Paper>
+        {data.length === 0 ? <CircularIndeterminate/> : <Paper style={{ padding: "inherit" }}>
           <EnhancedTableToolbar
           //  numSelected={selected.length}
           />
@@ -289,11 +290,16 @@ export default class EnhancedTable extends Component {
                 {data
 
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .filter( val => {
-                    if(searchValue == ""){
-                      return val
-                    }else if(val.student_id.toString().toLowerCase().includes(searchValue.toString().toLowerCase())){
-                      return val
+                  .filter((val) => {
+                    if (searchValue === "") {
+                      return val;
+                    } else if (
+                      val.student_id
+                        .toString()
+                        .toLowerCase()
+                        .includes(searchValue.toString().toLowerCase())
+                    ) {
+                      return val;
                     }
                   })
                   .map((val) => {
@@ -345,7 +351,7 @@ export default class EnhancedTable extends Component {
               </TableFooter>
             </Table>
           </Scrollbars>
-        </Paper>
+        </Paper> }
       </>
     );
   }

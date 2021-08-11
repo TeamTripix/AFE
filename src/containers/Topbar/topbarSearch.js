@@ -79,7 +79,7 @@ class TopbarSearch extends React.Component {
   }
 
   render() {
-    const classes = this.useStyle;
+    // const classes = this.useStyle;
     return (
       <div>
         <div>

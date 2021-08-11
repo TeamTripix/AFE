@@ -34,10 +34,11 @@ export default function FullScreenDialog(props) {
   const dispatch = useDispatch()
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [close, setClose] = React.useState(true)
+  // const [close, setClose] = React.useState(true)
   useEffect(()=>{
     handleClickOpen()
   },[])
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -70,19 +71,11 @@ export default function FullScreenDialog(props) {
             
           </Toolbar>
         </AppBar>
-        <List>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText primary="Default notification ringtone" secondary="Tethys" />
-          </ListItem>
-        </List>
-        {/* <Typography variant="h6" className={classes.title}>{props.date.toString()}
-            </Typography>
-        <Typography variant="h6" className={classes.title}>{props.stData.user_first_name} {props.stData.user_last_name}
-            </Typography> */}
+        
+        <div style={{display:"flex", justifyContent:"space-between", marginTop: '0.7rem'}}>
+            <p style={{paddingLeft: '1rem'}}>{props.date.getDate()} - {props.date.getMonth()} - {props.date.getFullYear()}</p>
+            <p style={{paddingRight: '1rem'}}>{props.stData.user_first_name} {props.stData.user_last_name}</p>
+        </div>
       </Dialog>
     </div>
   );

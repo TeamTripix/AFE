@@ -154,6 +154,7 @@ export function LayoutTextFields() {
 
           <TextField
             label="Next Schedule Date"
+            // type="date"
             style={{ margin: 5, width: "98%" }}
             fullWidth
             margin="normal"

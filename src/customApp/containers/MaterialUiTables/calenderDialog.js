@@ -1,24 +1,23 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
+// import { makeStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import DateFnsUtils from "@date-io/date-fns";
-import { blue } from "@material-ui/core/colors";
+// import { blue } from "@material-ui/core/colors";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import TodayIcon from "@material-ui/icons/Today";
 import FullScreenDialog from './attendanceDetails'
-import DialogTitle from '@material-ui/core/DialogTitle';
 import { useSelector, useDispatch } from "react-redux";
 import notificationAction from '../../../redux/notification/action'
 
 
-const useStyles = makeStyles({
-  avatar: {
+// const useStyles = makeStyles({
+//   avatar: {
 
-    backgroundColor: blue[100],
-    color: blue[600],
-  },
-});
+//     backgroundColor: blue[100],
+//     color: blue[600],
+//   },
+// });
 
 function SimpleDialog(props) {
   const dispatch = useDispatch()
@@ -26,7 +25,6 @@ function SimpleDialog(props) {
     return state.noticationReducer.data
 
   })
-  const classes = useStyles();
   const { onClose, selectedValue, open, Data } = props;
 
   const handleClose = () => {

@@ -321,11 +321,11 @@ class EnhancedTable extends Component {
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
-    const searchValue = this.props
+    // const searchValue = this.props
     // console.log(JSON.stringify(searchValue))
     return (
       <>
-      <Paper>
+      <Paper style={{ padding: "inherit" }}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <Scrollbars style={{ width: '100%' }}>
           <Table className={classes.table}>

@@ -45,7 +45,6 @@ const styles = theme => ({
             </Papersheet>
           </FullColumn>
         </Row>
-        {console.log('useSelector',mySearchState)}
       </LayoutWrapper>
     );
   }
