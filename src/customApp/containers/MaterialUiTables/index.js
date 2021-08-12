@@ -33,10 +33,7 @@ const styles = theme => ({
               <DemoWrapper>
                 {/* <div style={{display:'flex'}}> */}
 
-            <CheckboxesTags label={'Course'} placeholder={'Search student by course'}/>
-            <CheckboxesTags label={'Subject'} placeholder={'Search student by subject'}/>
-            <CheckboxesTags label={'Batch'} placeholder={'Search student by batch'}/>
-            <CheckboxesTags label={'Lecture'} placeholder={'Search student by lecture'}/>
+            <CheckboxesTags/>
                 {/* </div> */}
               </DemoWrapper>
               <DemoWrapper>

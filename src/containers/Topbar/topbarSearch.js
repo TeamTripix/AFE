@@ -6,8 +6,7 @@ import searchValue from "../../redux/search/action";
 import { connect } from "react-redux";
 
 const mapDispatchToProps = props => ({
- searchValueHandler: data => data.dispatch.dispatch(searchValue(data.data))
-// data:console.log(data)
+ searchValueHandler: data =>  data.dispatch.dispatch(searchValue(data.data)),
 });
 
 class TopbarSearch extends React.Component {
@@ -67,15 +66,18 @@ class TopbarSearch extends React.Component {
   getValue(e) {
     this.setState({
       initialSearch: e.target.value,
+    },()=>{
+
+      const data = {
+        data : this.state.initialSearch,
+        dispatch : this.props 
+      }
+      console.log(data)
+      this.props.searchValueHandler(data);
+
     });
 
-    const data = {
-      data : this.state.initialSearch,
-      dispatch : this.props 
-    }
 
-    this.props.searchValueHandler(data);
-    // console.log(this.props.searchValueHandler) 
   }
 
   render() {

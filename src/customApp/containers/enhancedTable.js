@@ -26,6 +26,7 @@ import Icon from "../../components/uielements/icon/index.js";
 import Tooltip from "../../components/uielements/tooltip";
 import FormDialog from "./feeCreation";
 import FormDialogs from "./feeUpdation";
+import {connect} from 'react-redux';
 
 const columnData = [
   { id: "calories", numeric: true, disablePadding: false, label: "Fees Type" },
@@ -183,7 +184,17 @@ function SimplePopover(props) {
   );
 }
 
-export default class EnhancedTable extends Component {
+// ------------------------------mapStateToProps---------------------------
+
+const mapStateToProps = (props) => {
+  return{
+    value: props.searchValue.data
+  }
+}
+
+// ------------------------------mapStateToProps---------------------------
+
+class EnhancedTable extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -269,7 +280,9 @@ export default class EnhancedTable extends Component {
   render() {
     // const { classes } = this.props;
     const { data, order, orderBy, rowsPerPage, page } = this.state;
-    const searchValue = 28;
+
+    const searchValue = this.props.value
+
     return (
       <>
         {data.length === 0 ? <CircularIndeterminate/> : <Paper style={{ padding: "inherit" }}>
@@ -356,3 +369,6 @@ export default class EnhancedTable extends Component {
     );
   }
 }
+
+export default connect(mapStateToProps)(EnhancedTable)
+

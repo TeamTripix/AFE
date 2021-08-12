@@ -7,7 +7,8 @@ import keycode from "keycode";
 import TopbarSearch from "../../../containers/Topbar/topbarSearch";
 import CustomCalendar from "./calenderDialog";
 import CircularIndeterminate from '../../../containers/snipper'
-
+import {connect} from 'react-redux';
+ 
 import {
   TableBody,
   TableCell,
@@ -164,7 +165,19 @@ EnhancedTableToolbar.propTypes = {
 
 EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
 
-export default class EnhancedTable extends Component {
+// ------------------------------mapStateToProps---------------------------
+
+const mapStateToProps = (props) => {
+  return{
+    value: props.searchValue.data
+  }
+}
+
+// ------------------------------mapStateToProps---------------------------
+
+
+
+class EnhancedTable extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -250,7 +263,7 @@ export default class EnhancedTable extends Component {
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
-    // const searchValue = "r";
+    const searchValue = this.props.value
     console.log(data)
     return (
       <>
@@ -270,13 +283,13 @@ export default class EnhancedTable extends Component {
                 {data
 
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  // .filter( val => {
-                  //   if(searchValue === ""){
-                  //     return val
-                  //   }else if(val.name.toString().toLowerCase().includes(searchValue.toString().toLowerCase())){
-                  //     return val
-                  //   }
-                  // })
+                  .filter( val => {
+                    if(searchValue === ""){
+                      return val
+                    }else if(val.user_first_name.toString().toLowerCase().includes(searchValue.toString().toLowerCase())){
+                      return val
+                    }
+                  })
                   .map((val) => {
                     // const isSelected = this.isSelected(validate.id);
                     return (
@@ -332,3 +345,5 @@ export default class EnhancedTable extends Component {
     );
   }
 }
+
+export default connect(mapStateToProps)(EnhancedTable)

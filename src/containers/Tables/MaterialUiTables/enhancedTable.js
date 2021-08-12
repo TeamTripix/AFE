@@ -170,9 +170,9 @@ EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
 // ------------------------------mapStateToProps---------------------------
 
 const mapStateToProps = (props) => {
-  var value = props.searchValue.data
-  console.log(value)
-  return value
+  return{
+    value: props.searchValue.data
+  }
 }
 
 // ------------------------------mapStateToProps---------------------------
@@ -321,8 +321,8 @@ class EnhancedTable extends Component {
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
-    // const searchValue = this.props
-    // console.log(JSON.stringify(searchValue))
+    const searchValue = this.props.value
+
     return (
       <>
       <Paper style={{ padding: "inherit" }}>
@@ -341,13 +341,13 @@ class EnhancedTable extends Component {
               {data
 
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                // .filter( val => {
-                //   if(searchValue === ""){
-                //     return val
-                //   }else if(val.name.toString().toLowerCase().includes(searchValue)){
-                //     return val
-                //   }
-                // })
+                .filter( val => {
+                  if(searchValue === ""){
+                    return val
+                  }else if(val.name.toString().toLowerCase().includes(searchValue)){
+                    return val
+                  }
+                })
                 .map(val => {
                   const isSelected = this.isSelected(val.id);
                   return (
