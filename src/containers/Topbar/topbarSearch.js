@@ -28,7 +28,6 @@ class TopbarSearch extends React.Component {
         data : this.state.initialSearch,
         dispatch : this.props 
       }
-      console.log(data)
       this.props.searchValueHandler(data);
 
     });

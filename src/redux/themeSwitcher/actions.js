@@ -15,7 +15,7 @@ const actions = {
     return {
       type: actions.CHANGE_THEME,
       attribute,
-      theme,
+      // theme,
     };
   },
 };

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 // import { makeStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
+import {IconButton} from "@material-ui/core";
 import DateFnsUtils from "@date-io/date-fns";
 // import { blue } from "@material-ui/core/colors";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -82,7 +83,14 @@ export default function CustomCalendar(props) {
 
   return (
     <div>
+            <IconButton
+        aria-label="delete"
+        onClick={handleClickOpen}
+        
+        size="large"
+      >
       <TodayIcon onClick={handleClickOpen} />
+      </IconButton>
       <SimpleDialog open={open} onClose={handleClose} Data={props.Data} />
     </div>
   );

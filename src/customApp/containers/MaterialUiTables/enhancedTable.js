@@ -42,10 +42,6 @@ const columnData = [
     disablePadding: false,
     label: "Attendance",
   },
-  // { id: 'fat', numeric: false, disablePadding: false, label: 'Email' },
-  // { id: 'carbs', numeric: false, disablePadding: false, label: 'Query' },
-  // { id: 'protein', numeric: true, disablePadding: false, label: 'Reply' },
-  // { id: 'proteinh', numeric: true, disablePadding: false, label: 'Option' }
 ];
 
 class EnhancedTableHead extends Component {
@@ -53,13 +49,6 @@ class EnhancedTableHead extends Component {
     this.props.onRequestSort(event, property);
   };
   render() {
-    // const {
-      // onSelectAllClick,
-      // order,
-      // orderBy,
-      // numSelected,
-      // rowCount,
-    // } = this.props;
 
     return (
       <TableHead>
@@ -194,8 +183,12 @@ class EnhancedTable extends Component {
   componentDidMount() {
     fetch("http://35.244.8.93:7000/api/user/select/all").then((result) => {
       result.json().then((res) => {
-        this.setState({ data: res.reverse() });
-      });
+        if(res.fatal === true){
+          this.setState({ data: res});
+        }else{
+          this.setState({ data: res.reverse() });
+        }
+      })
     });
   }
 
@@ -264,10 +257,9 @@ class EnhancedTable extends Component {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
     const searchValue = this.props.value
-    console.log(data)
     return (
       <>
-        {data.length === 0 ? <CircularIndeterminate/> : <Paper style={{ padding: "inherit" }}>
+        {data.length === 0 ? <CircularIndeterminate/> : <Paper className={classes.root} style={{ padding: "inherit" }}>
           <EnhancedTableToolbar numSelected={selected.length} />
           <Scrollbars style={{ width: "100%" }}>
             <Table className={classes.table}>

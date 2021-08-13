@@ -7,6 +7,10 @@ const routes = [
     path: 'enquiry-management',
     component: lazy(() => import('../Tables/MaterialUiTables')),
   },
+  {
+    path: '',
+    component: lazy(() => import('../Page/Welcome')),
+  },
   ...customRoutes,
 ];
 

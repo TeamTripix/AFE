@@ -15,7 +15,6 @@ function CheckboxesTagsCourse(props) {
 
   return (
     <Autocomplete
-      id="combo-box-demo"
       options={data}
       getOptionLabel={(option) => option.name}
       style={{ width: '60rem', margin:5 }}
@@ -37,7 +36,6 @@ function CheckboxesTagsSubject(props) {
 
   return (
     <Autocomplete
-      id="combo-box-demo"
       options={data}
       getOptionLabel={(option) => option.name}
       style={{ width: '60rem', margin:5 }}
@@ -59,7 +57,6 @@ function CheckboxesTagsBatch(props) {
 
   return (
     <Autocomplete
-      id="combo-box-demo"
       options={data}
       getOptionLabel={(option) => option.batch_name}
       style={{ width: '60rem', margin:5 }}
@@ -80,7 +77,6 @@ function CheckboxesTagsLecture(props) {
 
   return (
     <Autocomplete
-      id="combo-box-demo"
       options={data}
       getOptionLabel={(option) => option.agenda}
       style={{ width: '60rem', margin:5 }}

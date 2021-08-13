@@ -211,7 +211,12 @@ class EnhancedTable extends Component {
   componentDidMount() {
     fetch("http://35.244.8.93:7000/api/fee/select/all").then((result) => {
       result.json().then((res) => {
-        this.setState({ data: res.reverse() });
+        console.log(res.fatal)
+        if(res.fatal === true){
+          this.setState({ data: res});
+        }else{
+          this.setState({ data: res.reverse() });
+        }
       });
     });
   }
@@ -285,7 +290,9 @@ class EnhancedTable extends Component {
 
     return (
       <>
-        {data.length === 0 ? <CircularIndeterminate/> : <Paper style={{ padding: "inherit" }}>
+      {
+        data.fatal === true ? <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><h1>Server Error</h1></div> :
+        data.length === 0 ? <CircularIndeterminate/> : <Paper style={{ padding: "inherit" }}>
           <EnhancedTableToolbar
           //  numSelected={selected.length}
           />
@@ -298,7 +305,7 @@ class EnhancedTable extends Component {
                 // onSelectAllClick={this.handleSelectAllClick}
                 onRequestSort={this.handleRequestSort}
                 rowCount={data.length}
-              />
+                />
               <TableBody>
                 {data
 
@@ -308,25 +315,25 @@ class EnhancedTable extends Component {
                       return val;
                     } else if (
                       val.student_id
-                        .toString()
-                        .toLowerCase()
-                        .includes(searchValue.toString().toLowerCase())
-                    ) {
-                      return val;
-                    }
-                  })
+                      .toString()
+                      .toLowerCase()
+                      .includes(searchValue.toString().toLowerCase())
+                      ) {
+                        return val;
+                      }
+                    })
                   .map((val) => {
                     const isSelected = this.isSelected(val.id);
                     return (
                       <TableRow
-                        hover
-                        onClick={(event) => this.handleClick(event, val.id)}
-                        onKeyDown={(event) => this.handleKeyDown(event, val.id)}
-                        role="checkbox"
-                        aria-checked={isSelected}
-                        tabIndex={-1}
-                        key={val.id}
-                        // selected={isSelected}
+                      hover
+                      onClick={(event) => this.handleClick(event, val.id)}
+                      onKeyDown={(event) => this.handleKeyDown(event, val.id)}
+                      role="checkbox"
+                      aria-checked={isSelected}
+                      tabIndex={-1}
+                      key={val.id}
+                      // selected={isSelected}
                       >
                         <TableCell padding="checkbox">
                           <FormDialogs data={val} />
@@ -359,14 +366,15 @@ class EnhancedTable extends Component {
                     page={page}
                     onChangePage={this.handleChangePage}
                     onChangeRowsPerPage={this.handleChangeRowsPerPage}
-                  />
+                    />
                 </TableRow>
               </TableFooter>
             </Table>
           </Scrollbars>
-        </Paper> }
+        </Paper> 
+    }
       </>
-    );
+      );
   }
 }
 

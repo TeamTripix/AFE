@@ -41,9 +41,8 @@ class App extends Component {
     const options = { url, classes, theme, locale };
     const currentAppLocale = AppLocale[locale];
     return (
+      <>
       <IntlProvider
-        locale={currentAppLocale.locale}
-        messages={currentAppLocale.messages}
       >
         <Root>
           <Debounce time="1000" handler="onResize">
@@ -86,6 +85,7 @@ class App extends Component {
           </AppFrame>
         </Root>
       </IntlProvider>
+      </>
     );
   }
 }
@@ -93,7 +93,7 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     auth: state.Auth,
-    locale: state.LanguageSwitcher.language.locale,
+    // locale: state.LanguageSwitcher.language.locale,
     scrollHeight: state.App.scrollHeight, // toJs()
     fixedNavbar: state.App.fixedNavbar,
     view: state.App.view,

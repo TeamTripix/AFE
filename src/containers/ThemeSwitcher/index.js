@@ -5,7 +5,7 @@ import Switch from '../../components/uielements/switch';
 import Actions from '../../redux/themeSwitcher/actions.js';
 import appActions from '../../redux/app/actions.js';
 import Switcher from '../../components/themeSwitcher/themeSwitcher';
-import LanguageSwitcher from '../LanguageSwitcher';
+// import LanguageSwitcher from '../LanguageSwitcher';
 import Themes from './config';
 import {
   Icon,
@@ -70,7 +70,7 @@ class ThemeSwitcher extends Component {
             changeTheme={changeTheme}
             selectedId={sidebarTheme.themeName}
           />
-          <LanguageSwitcher />
+          {/* <LanguageSwitcher /> */}
         </SwitcherBlock>
 
         <PurchaseActionBtn>

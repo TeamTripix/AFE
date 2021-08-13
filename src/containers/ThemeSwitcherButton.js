@@ -10,14 +10,16 @@ const ThemeSwitcherButton = ({ isActivated, switchActivation }) => {
     switchActivation(value);
   };
   return (
-    <Button
-      variant="contained"
-      color="primary"
-      onClick={toggleView}
-      className={openThemeSwitcher ? "active" : ""}
-    >
-      <Icon>settings</Icon>
-    </Button>
+    <>
+    {/* // <Button
+    //   variant="contained"
+    //   color="primary"
+    //   onClick={toggleView}
+    //   className={openThemeSwitcher ? "active" : ""}
+    // >
+    //   <Icon>settings</Icon>
+    // </Button> */}
+    </>
   );
 };
 const mapStateToProps = state => ({
