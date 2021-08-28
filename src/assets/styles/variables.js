@@ -14,6 +14,6 @@ export const variables = {
   LINE_HEIGHT: '30px',
   PRIMARY_BOX_SHADOW: '30px',
   HEADER_FONT_SIZE: '19px',
-  PRIMARY_FONT_FAMILY: 'Roboto',
+  PRIMARY_FONT_FAMILY: 'Poppins',
   FONT_WEIGHT: '500',
 };

@@ -26,14 +26,8 @@ const styles = theme => ({
     const mySearchState = useSelector((state)=> state.seachData)
     return (
       <LayoutWrapper>
-        <Row>
-          <FullColumn>
-            <Papersheet>
-              <DemoWrapper>
-                <EnhancedTable {...props} search={mySearchState}/>
-              </DemoWrapper>
-            </Papersheet>
-          </FullColumn>
+        <Row style={{padding:'1rem',paddingTop:'0px'}}>
+                <EnhancedTable {...props} search={mySearchState} />
         </Row>
       </LayoutWrapper>
     );

@@ -12,6 +12,9 @@ class FourZeroFour extends Component {
           <h1>
             <IntlMessages id="A F E" />
           </h1>
+          {/* <h4>
+            <IntlMessages id="Admin" />
+          </h4> */}
           <h4>
             <IntlMessages id="Attendance Fee Enquiry" />
           </h4>
@@ -19,9 +22,9 @@ class FourZeroFour extends Component {
             <IntlMessages id="Checkout the side navbar and navigate to these module" />
           </p>
 
-          <Link to="/dashboard/fee-management">
-            <button type="button">
-              <IntlMessages id="Fee Management" />
+          <Link to="/dashboard/fee">
+            <button type="button" style={{backgroundColor:'#7d4398', color:'white'}}>
+              <IntlMessages id="Fee" />
             </button>
           </Link>
         </div>

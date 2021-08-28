@@ -69,7 +69,7 @@ class App extends Component {
 
               <MUIPProvider>
                 <AppRouter
-                  style={{ height: scrollHeight, overflowY: 'auto' }}
+                  style={{ height: scrollHeight, overflowY: 'auto'}}
                   url={url}
                 />
               </MUIPProvider>

@@ -38,7 +38,7 @@ const NavLinks = styled.div`
     display: inline-flex;
     font-weight: 500;
     padding: 0 15px 0;
-    color: #ffffff;
+    color: white;
     line-height: 1.1;
     font-size: 14px;
     position: relative;
@@ -82,7 +82,7 @@ const PageInfo = styled.div`
 
   .pageTitle {
     font-size: 24px;
-    color: #ffffff;
+    color: #7d4398;
     font-weight: 500;
     line-height: 1.5;
     margin-top: 0;
@@ -106,7 +106,7 @@ const NavRoutes = styled.div`
   span {
     display: inline-flex;
     padding: 0;
-    color: #ffffff;
+    color: #898989;
     line-height: 1.1;
     font-size: 14px;
     position: relative;
@@ -136,7 +136,6 @@ const BreadcrumbWrapper = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  ${boxShadow('0 1px 2px rgba(0,0,0,0.35)')};
 
   * {
     box-sizing: border-box;

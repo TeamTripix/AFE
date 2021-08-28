@@ -54,15 +54,26 @@ function CheckboxesTagsBatch(props) {
     getData()
   },[])
   
+const handleBatchInput = (e)=>{
+  const batchName = e.target.innerHTML
+  // alert(batchName)
+// console.log(data)
+  for(let i in data){
+    if(data[i].batch_name === batchName){
+      const batchId = data[i].id
+    }
+  }
+}
 
   return (
     <Autocomplete
       options={data}
       getOptionLabel={(option) => option.batch_name}
+      onChange={handleBatchInput}
       style={{ width: '60rem', margin:5 }}
       renderInput={(params) => <TextField style={{backgroundColor:'white'}} {...params} label={props.label} placeholder={props.placeholder} variant="outlined" />}
     />
-  );
+    );
 }
 
 function CheckboxesTagsLecture(props) {

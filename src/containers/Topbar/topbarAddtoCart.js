@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import IntlMessages from "../../components/utility/intlMessages";
-import SingleCart from "../../components/cart/singleCartModal";
+// import SingleCart from "../../components/";
 import Scrollbars from "../../components/utility/customScrollBar";
 import ecommerceAction from "../../redux/ecommerce/actions";
 import { SidebarContent } from "./sidebarNotification.style";
@@ -25,13 +25,15 @@ class TopbarAddtoCart extends Component {
     return productQuantity.map(product => {
       totalPrice += product.quantity * products[product.objectID].price;
       return (
-        <SingleCart
-          key={product.objectID}
-          quantity={product.quantity}
-          changeQuantity={this.changeQuantity}
-          cancelQuantity={this.cancelQuantity}
-          {...products[product.objectID]}
-        />
+        <>
+        </>
+        // <SingleCart
+        //   key={product.objectID}
+        //   quantity={product.quantity}
+        //   changeQuantity={this.changeQuantity}
+        //   cancelQuantity={this.cancelQuantity}
+        //   {...products[product.objectID]}
+        // />
       );
     });
   };

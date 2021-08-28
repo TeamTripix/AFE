@@ -41,7 +41,7 @@ const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.24);
+  background: #7d4398;
   ${boxShadow('0px 1px 2px rgba(0, 0, 0, 0.35)')};
 
   a {
@@ -62,7 +62,7 @@ const LogoWrapper = styled.div`
 `;
 
 const Lists = styled(List)`
-  padding: 20px 0;
+  padding: 0 0;
 
   a {
     -webkit-tap-highlight-color: transparent;
@@ -117,6 +117,7 @@ const ExpandMoreIcon = styled(Icon)`
 
 const ListItem = styled(ListItems)`
   padding: 0 16px 0 25px;
+  border-bottom: 1px solid #2D2E61;
   > a {
     width: 100%;
     text-decoration: none;
@@ -130,7 +131,7 @@ const ListItem = styled(ListItems)`
   }
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #64347a;
     ${boxShadow('0px 0px 3px 0px rgba(0, 0, 0, 0.2)')};
 
     ${ListItemText}, ${ListItemIcon}, ${ExpandLessIcon}, ${ExpandMoreIcon} {
@@ -152,7 +153,7 @@ const ListItem = styled(ListItems)`
   }
 
   &.selected {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #432152;
 
     ${ListItemIcon}, ${ListItemText}, ${ExpandLessIcon}, ${ExpandMoreIcon} {
       opacity: 1;

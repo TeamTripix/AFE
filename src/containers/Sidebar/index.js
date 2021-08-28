@@ -6,6 +6,7 @@ import Scrollbars from '../../components/utility/customScrollBar';
 import IntlMessages from '../../components/utility/intlMessages';
 import appActions from '../../redux/app/actions';
 // import Logo from '../../images/logo.png';
+import icons from './icons'
 import options from './options';
 import Drawer, {
   LogoWrapper,
@@ -19,11 +20,15 @@ import Drawer, {
 
 const { toggleCollapsed, changeOpenKeys, changeCurrent } = appActions;
 
+icons.map((e)=>{
+  console.log(e)
+})
+
 let selectedTheme = {};
 
 const ListLabel = ({ label }) => (
   <ListItemText
-    style={{ color: selectedTheme.textColor }}
+    style={{ color: '#fff' }}
     inset
     primary={<IntlMessages id={label} />}
   />
@@ -39,8 +44,17 @@ const ListElement = ({
   return (
     <div className="ListItemWrapper">
       {leftIcon ? (
-        <ListItemIcon style={{ color: selectedTheme.textColor }}>
+        <ListItemIcon 
+        style={{ color: selectedTheme.textColor }}
+        >
           {leftIcon}
+          {/* {icons.map(prop => console.log(prop))} */}
+
+          {/* ++++++++++++++++++++++++++++++++++++++ */}
+
+          
+
+          {/* ++++++++++++++++++++++++++++++++++++++ */}
         </ListItemIcon>
       ) : null}
       <ListLabel label={label} />
@@ -65,7 +79,7 @@ const LogoElem = ({ onLogo }) => {
   return (
     <Link to="/dashboard" onClick={onLogo}>
       {/* <img src={Logo} alt="Logo" /> */}
-      Mate admin
+      Admin AFE
     </Link>
   );
 };
@@ -153,11 +167,7 @@ class Sidebar extends Component {
     };
     return (
       <Drawer
-        variant={
-          view !== 'TabLandView' && view !== 'DesktopView'
-            ? undefined
-            : fixedNavbar
-              ? 'permanent'
+        variant={ view !== 'TabLandView' && view !== 'DesktopView' ? undefined : fixedNavbar ? 'permanent'
               : undefined
         }
         open={!collapsed}
@@ -165,10 +175,11 @@ class Sidebar extends Component {
         anchor={anchor}
         transitionDuration={100}
         className={`${collapsed && 'collapsed'} ${fixedNavbar && 'f1x3dnAV'}`}
+        
       >
         <div
           className="drawerInner"
-          style={{ background: customizedTheme.backgroundColor }}
+          style={{backgroundColor:'#7d4398'}}
         >
           <LogoWrapper>
             <LogoElem onLogo={this.onLogo} />

@@ -4,7 +4,7 @@ import customRoutes from '../../customApp/router';
 import Loader from '../../components/utility/Loader/';
 const routes = [
   {
-    path: 'enquiry-management',
+    path: 'enquiry',
     component: lazy(() => import('../Tables/MaterialUiTables')),
   },
   {

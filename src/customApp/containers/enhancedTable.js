@@ -7,7 +7,8 @@ import keycode from "keycode";
 import TopbarSearch from "../../containers/Topbar/topbarSearch";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import CircularIndeterminate from '../../containers/snipper'
+import CircularIndeterminate from "../../containers/snipper";
+import ReplayIcon from "@material-ui/icons/Replay";
 
 import {
   TableBody,
@@ -26,7 +27,7 @@ import Icon from "../../components/uielements/icon/index.js";
 import Tooltip from "../../components/uielements/tooltip";
 import FormDialog from "./feeCreation";
 import FormDialogs from "./feeUpdation";
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 
 const columnData = [
   { id: "calories", numeric: true, disablePadding: false, label: "Fees Type" },
@@ -64,35 +65,18 @@ class EnhancedTableHead extends Component {
     } = this.props;
 
     return (
-      <TableHead>
+      <TableHead style={{backgroundColor:'#7d4398'}}>
         <TableRow>
           <TableCell padding="checkbox">
-            {/* <Checkbox
-              indeterminate={numSelected > 0 && numSelected < rowCount}
-              checked={numSelected === rowCount}
-              onChange={onSelectAllClick}
-            /> */}
           </TableCell>
           {columnData.map((column) => {
             return (
               <TableCell
                 key={column.id}
                 numeric={column.numeric}
-                padding={column.disablePadding ? "none" : "default"}
+                style={{color:'white'}}
               >
-                <Tooltip
-                  title="Sort"
-                  placement={column.numeric ? "bottom-end" : "bottom-start"}
-                  enterDelay={300}
-                >
-                  <TableSortLabel
-                    active={orderBy === column.id}
-                    direction={order}
-                    onClick={this.createSortHandler(column.id)}
-                  >
                     {column.label}
-                  </TableSortLabel>
-                </Tooltip>
               </TableCell>
             );
           }, this)}
@@ -132,26 +116,19 @@ let EnhancedTableToolbar = (props) => {
         })}
       >
         <div className={classes.title}>
-          <TopbarSearch value={"hello"} />
+      <h4 style={{color:'#707070'}}>Fees</h4>
+
         </div>
         <div className={classes.spacer} />
         <div className={classes.actions}>
-          {numSelected > 0 ? (
-            <Tooltip title="Delete">
-              <IconButton aria-label="Delete">
-                <Icon>delete</Icon>
-              </IconButton>
-            </Tooltip>
-          ) : (
             <div style={{ display: "flex" }}>
+              <div style={{marginRight:'20px'}}>
+
+
+          <TopbarSearch  />
+              </div>
               <FormDialog />
-              <Tooltip title="Filter list">
-                <IconButton aria-label="Filter list">
-                  {/* <Icon>filter_list</Icon> */}
-                </IconButton>
-              </Tooltip>
             </div>
-          )}
         </div>
       </Toolbar>
     </>
@@ -187,10 +164,10 @@ function SimplePopover(props) {
 // ------------------------------mapStateToProps---------------------------
 
 const mapStateToProps = (props) => {
-  return{
-    value: props.searchValue.data
-  }
-}
+  return {
+    value: props.searchValue.data,
+  };
+};
 
 // ------------------------------mapStateToProps---------------------------
 
@@ -208,17 +185,20 @@ class EnhancedTable extends Component {
     };
   }
 
-  componentDidMount() {
+  refresh () {
     fetch("http://35.244.8.93:7000/api/fee/select/all").then((result) => {
       result.json().then((res) => {
-        console.log(res.fatal)
-        if(res.fatal === true){
-          this.setState({ data: res});
-        }else{
+        if (res.fatal === true) {
+          this.setState({ data: res });
+        } else {
           this.setState({ data: res.reverse() });
         }
       });
     });
+  }
+
+  componentDidMount() {
+    this.refresh()
   }
 
   handleRequestSort = (event, property) => {
@@ -286,97 +266,113 @@ class EnhancedTable extends Component {
     // const { classes } = this.props;
     const { data, order, orderBy, rowsPerPage, page } = this.state;
 
-    const searchValue = this.props.value
+    const searchValue = this.props.value;
 
     return (
       <>
-      {
-        data.fatal === true ? <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><h1>Server Error</h1></div> :
-        data.length === 0 ? <CircularIndeterminate/> : <Paper style={{ padding: "inherit" }}>
-          <EnhancedTableToolbar
-          //  numSelected={selected.length}
-          />
-          <Scrollbars style={{ width: "100%" }}>
-            <Table style={{ minWidth: "700" }}>
-              <EnhancedTableHead
-                // numSelected={selected.length}
-                order={order}
-                orderBy={orderBy}
-                // onSelectAllClick={this.handleSelectAllClick}
-                onRequestSort={this.handleRequestSort}
-                rowCount={data.length}
+        {data.fatal === true ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <h1>Server Error</h1>
+          </div>
+        ) : data.length === 0 ? (
+          <CircularIndeterminate />
+        ) : (
+          <Paper style={{ padding: "inherit", borderRadius: "15px", margin: "0px"  }}>
+            <EnhancedTableToolbar
+            //  numSelected={selected.length}
+            />
+            <Scrollbars style={{ width: "100%" }}>
+              <Table style={{ minWidth: "700" }}>
+                <EnhancedTableHead
+                  // numSelected={selected.length}
+                  order={order}
+                  orderBy={orderBy}
+                  // onSelectAllClick={this.handleSelectAllClick}
+                  onRequestSort={this.handleRequestSort}
+                  rowCount={data.length}
+                  
                 />
-              <TableBody>
-                {data
+                <TableBody>
+                  {data
 
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .filter((val) => {
-                    if (searchValue === "") {
-                      return val;
-                    } else if (
-                      val.student_id
-                      .toString()
-                      .toLowerCase()
-                      .includes(searchValue.toString().toLowerCase())
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .filter((val) => {
+                      if (searchValue === "") {
+                        return val;
+                      } else if (
+                        val.student_id
+                          .toString()
+                          .toLowerCase()
+                          .includes(searchValue.toString().toLowerCase())
                       ) {
                         return val;
                       }
                     })
-                  .map((val) => {
-                    const isSelected = this.isSelected(val.id);
-                    return (
-                      <TableRow
-                      hover
-                      onClick={(event) => this.handleClick(event, val.id)}
-                      onKeyDown={(event) => this.handleKeyDown(event, val.id)}
-                      role="checkbox"
-                      aria-checked={isSelected}
-                      tabIndex={-1}
-                      key={val.id}
-                      // selected={isSelected}
-                      >
-                        <TableCell padding="checkbox">
-                          <FormDialogs data={val} />
-                        </TableCell>
-                        <TableCell>{val.fees_type}</TableCell>
-                        <TableCell>{val.paid_fees}</TableCell>
-                        <TableCell>{val.fees_status}</TableCell>
-                        <TableCell>
-                          {val.comment.length >= 20 ? (
-                            <SimplePopover props={val.comment} />
-                          ) : (
-                            val.comment
-                          )}
-                        </TableCell>
-                        <TableCell>{val.total_fees}</TableCell>
-                        <TableCell>{val.installment_type}</TableCell>
-                        <TableCell>{val.next_schedule_date}</TableCell>
-                        <TableCell>{val.created_on}</TableCell>
-                        <TableCell>{val.updated_on}</TableCell>
-                        {/* <TableCell><CustomizedDialogs query={n.query} name={n.name} date={n.date}/></TableCell> */}
-                      </TableRow>
-                    );
-                  })}
-              </TableBody>
-              <TableFooter>
-                <TableRow>
-                  <TablePagination
-                    count={data.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onChangePage={this.handleChangePage}
-                    onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                    .map((val) => {
+                      const isSelected = this.isSelected(val.id);
+                      return (
+                        <TableRow
+                          hover
+                          onClick={(event) => this.handleClick(event, val.id)}
+                          onKeyDown={(event) =>
+                            this.handleKeyDown(event, val.id)
+                          }
+                          role="checkbox"
+                          aria-checked={isSelected}
+                          tabIndex={-1}
+                          key={val.id}
+                          // selected={isSelected}
+                        >
+                          <TableCell padding="checkbox">
+                            <FormDialogs data={val} />
+                          </TableCell>
+                          <TableCell>{val.fees_type}</TableCell>
+                          <TableCell>{val.paid_fees}</TableCell>
+                          <TableCell>{val.fees_status}</TableCell>
+                          <TableCell>
+                            {unescape(val.comment).length >= 20 ? (
+                              <SimplePopover props={unescape(val.comment)} />
+                            ) : (
+                              unescape(val.comment)
+                            )}
+                          </TableCell>
+                          <TableCell>{val.total_fees}</TableCell>
+                          <TableCell>{val.installment_type}</TableCell>
+                          <TableCell>{val.next_schedule_date.slice(8,10)}-{val.next_schedule_date.slice(5,7)}-{val.next_schedule_date.slice(0,4)}</TableCell>
+                          <TableCell>{val.created_on.slice(8,10)}-{val.created_on.slice(5,7)}-{val.created_on.slice(0,4)}</TableCell>
+                          <TableCell>{val.updated_on.slice(8,10)}-{val.updated_on.slice(5,7)}-{val.updated_on.slice(0,4)}</TableCell>
+                        </TableRow>
+                      );
+                    })}
+                </TableBody>
+                <TableFooter>
+                  <TableRow>
+                    <TablePagination
+                      count={data.length}
+                      rowsPerPage={rowsPerPage}
+                      page={page}
+                      onChangePage={this.handleChangePage}
+                      onChangeRowsPerPage={this.handleChangeRowsPerPage}
                     />
-                </TableRow>
-              </TableFooter>
-            </Table>
-          </Scrollbars>
-        </Paper> 
-    }
+                  </TableRow>
+                  {/* <div onClick={console.log("refresh")}>
+
+                    <ReplayIcon />
+                  </div> */}
+                </TableFooter>
+              </Table>
+            </Scrollbars>
+          </Paper>
+        )}
       </>
-      );
+    );
   }
 }
 
-export default connect(mapStateToProps)(EnhancedTable)
-
+export default connect(mapStateToProps)(EnhancedTable);

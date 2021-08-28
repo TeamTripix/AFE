@@ -26,16 +26,9 @@ root: {
     const mySearchState = useSelector((state)=> state.seachData)
     return (
       <LayoutWrapper>
-        <Row>
-          <FullColumn>
-            <Papersheet>
-              <DemoWrapper>
+        <Row style={{padding:'1rem',paddingTop:'0px', display:'block'}}>
                 <EnhancedTable {...props} search={mySearchState}/>
-              </DemoWrapper>
-            </Papersheet>
-          </FullColumn>
         </Row>
-        {console.log('useSelector',mySearchState)}
       </LayoutWrapper>
     );
   }

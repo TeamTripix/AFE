@@ -2,11 +2,11 @@ import asyncComponent from "../helpers/AsyncFunc";
 
 const routes = [
   {
-    path: "fee-management",
-    component: asyncComponent(() => import("./containers/enhancedTable"))
+    path: "fee",
+    component: asyncComponent(() => import("./containers/index"))
   },
   {
-    path: "attendance-management",
+    path: "attendance",
     component: asyncComponent(() => import("./containers/MaterialUiTables/index"))
   }
 ];

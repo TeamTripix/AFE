@@ -10,7 +10,6 @@ import BreadcrumbWrapper, {
   PageInfo,
   FakeBoxWithTab,
   FakeBox,
-  // Icons,
 } from './style';
 
 const bredContainerId = 'bredContainer';
@@ -69,8 +68,9 @@ class PageBreadcrumb extends Component {
       <div style={style} id={bredContainerId}>
         {isNavTab ? <FakeBoxWithTab /> : <FakeBox />}
         <BreadcrumbWrapper
-          style={{ background: customizedTheme.backgroundColor }}
+          style={{ background: "#f5f5f5" }}
         >
+
           <PageInfo>
             {/* <Icons>{LeftIcon}</Icons> */}
             <h3 className="pageTitle">
@@ -78,12 +78,16 @@ class PageBreadcrumb extends Component {
             </h3>
           </PageInfo>
 
-          <NavRoutes>
-            <Link to={`${url}`} onClick={this.onHomeCLick}>
+          {/* <NavRoutes> */}
+
+          <div style={{display:'flex', fontSize: "0.85rem"}}>
+            <Link to={`${url}`} onClick={this.onHomeCLick} style={{textDecoration: 'none',
+    color: '#707070'}}>
               {url.replace('/', '')}
-            </Link>
-            <span className="currentPageName">{key}</span>
-          </NavRoutes>
+            </Link> 
+            <span className="currentPageName" style={{color:'#707070'}}>/{key}</span>
+          </div>
+          {/* </NavRoutes> */}
 
           {isNavTab ? (
             <NavLinks>{parent.children.map(navLinksOptions)}</NavLinks>

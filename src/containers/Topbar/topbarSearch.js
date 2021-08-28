@@ -39,7 +39,7 @@ class TopbarSearch extends React.Component {
 
     const search = {
         position: 'relative',
-        borderRadius: '2px',
+        border: '1px solid #DFDFDF',
         backgroundColor: alpha('#nnn', 0.15),
         '&:hover': {
           backgroundColor: alpha('#nnf', 0.25),
@@ -55,6 +55,16 @@ class TopbarSearch extends React.Component {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingLeft: '5px'
+    }
+
+    const mediaQueryForSearchBar = {
+      width: '20vw',
+      marginLeft:'2rem',
+      "&:@media (max-width: 800px)": {
+        displays: "block",
+        marginBottom:'1rem'
+      }
     }
     return (
       <div style={search}>
@@ -62,11 +72,11 @@ class TopbarSearch extends React.Component {
           <SearchIcon />
         </div>
         <InputBase
-          placeholder="Search…"
+          placeholder="Search by name"
           onChange={this.getValue}
           inputProps={{ "aria-label": "search" }}
           value={this.state.initialSearch}
-          style={{paddingLeft: '2rem'}}
+          style={mediaQueryForSearchBar}
         />
       </div>
     );

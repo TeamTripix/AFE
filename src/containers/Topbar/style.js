@@ -16,15 +16,13 @@ const AppHolder = styled(AppBar)`
   z-index: 1300;
   width: 100%;
   height: 65px;
-  background-color: ${palette('indigo', 5)};
   transition: all 0.2s ease-in-out;
-  ${boxShadow('0 1px 2px rgba(0,0,0,0.35)')};
 `;
 
 const IconButtons = styled(IconButton)`
   width: auto;
   height: auto;
-  color: #ffffff;
+  color: #939393;
 `;
 
 const TopbarComponents = styled.div`

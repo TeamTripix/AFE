@@ -5,14 +5,21 @@ import { SnackbarProvider, useSnackbar } from 'notistack';
 
 function MyApp(props) {
   const { enqueueSnackbar } = useSnackbar();
+  const variant = props.variant
   const message = props.message
   useEffect(() => {
-    handleClickVariant(message)
-  },[message])
+    handleClickVariant(variant, message)
+  },[message,variant])
 
 
-  const handleClickVariant = (variant) => {
-    enqueueSnackbar('This is a success message!', { variant });
+  // const handleClickVariant = (variant,message) => {
+  //   enqueueSnackbar(message, 'success');
+  // };
+
+  const handleClickVariant = (variant,message) =>  {
+    // variant could be success, error, warning, info, or default
+    enqueueSnackbar(message);
+  
   };
 
   

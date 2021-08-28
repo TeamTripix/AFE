@@ -2,13 +2,12 @@ const options = [
   {
     leftIcon: 'view_headline',
     label: "Fees",
-    key: "fee-management"
+    key: "fee"
   },
   {
     label: 'Attendance',
-    key: 'attendance-management',
+    key: 'attendance',
     leftIcon: 'event',
-    hideBreadCrumb: true,
   }
 ];
 export default options;
